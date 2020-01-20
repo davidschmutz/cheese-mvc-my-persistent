@@ -1,21 +1,33 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://wwww/thymeleaf.org">
 <head th:replace="fragments :: head"></head>
 <body class="container">
-    <h1 th:text="${title}">Default Title</h1>
-    <nav th:replace="fragments :: navigation"></nav>
-    <br />
-    <p th:unless="${cheeses} and ${cheeses.size()}">Somebody moved my cheese &nbsp; :(</p>
-    <table class="table">
-        <tr th:if="${cheeses} and ${cheeses.size()}">
-            <th>Name</th>
-            <th>Description</th>
-        </tr>
-        <tr th:each="cheese : ${cheeses}">
-            <td th:text="${cheese.name}">Key</td>
-            <td th:text="${cheese.description}">Value</td>
-            <td th:text="${cheese.type.name}"></td>
-        </tr>
-    </table>
+
+<h1 th:text = "${title}"></h1>
+
+<nav th:replace="fragments :: navigation"></nav>
+
+<p th:unless="${cheeses} and ${cheeses.size()}">No Cheese :(</p>
+
+<table class="table">
+    <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Type</th>
+        <th>Rating</th>
+    </tr>
+
+    <tr th:each="cheese: ${cheeses}">
+        <td th:text="${cheese.name}"></td>
+        <td th:text="${cheese.description}"></td>
+        <td th:text="${cheese.type.name}"></td>
+        <td th:text="${cheese.rating}"></td>
+        <td>
+            <a th:href="@{'/cheese/edit/' + ${cheese.cheeseId}}">edit</a>
+        </td>
+    </tr>
+
+</table>
+
 </body>
 </html>

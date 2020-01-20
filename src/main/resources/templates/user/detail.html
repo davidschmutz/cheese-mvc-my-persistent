@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://wwww/thymeleaf.org">
+<head th:replace="fragments :: head"></head>
+<body class="container">
+
+<h1 th:text = "${'User: ' + user.username}"></h1>
+<h3 th:text = "${'EMail: ' + user.email}"></h3>
+<h3 th:text = "${'Account created: ' + user.creationDate}"></h3>
+
+
+<p>
+    <a href="/user/">All users</a>
+</p>
+</body>
+</html>

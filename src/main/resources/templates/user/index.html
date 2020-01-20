@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://wwww/thymeleaf.org">
+<head th:replace="fragments :: head"></head>
+<body class="container">
+
+<h1 th:text = "${'Welcome, ' + user.username}"></h1>
+<p>
+    <a href="/cheese">Show my cheeses</a>
+</p>
+<p>
+    <a href="/user/add">New user</a>
+</p>
+
+
+<h3>Users</h3>
+<div th:each="user: ${users}">
+    <a th:href="${'/user/' + user.userID}" th:text="${user.username}"></a>
+</div>
+</body>
+</html>

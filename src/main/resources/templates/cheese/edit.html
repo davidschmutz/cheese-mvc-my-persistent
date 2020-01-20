@@ -3,11 +3,13 @@
 <head th:replace="fragments :: head"></head>
 <body class="container">
 
-<h1 th:text="${title}">Default Title</h1>
+<h1 th:text="${'Edit Cheese ' + cheese.name + '  (' + 'Id: ' + cheese.cheeseId + ')'}"></h1>
 
 <nav th:replace="fragments :: navigation"></nav>
 
-<form method="post" class="form" style="max-width: 600px" th:object="${cheese}">
+<p th:each="error: ${errors}" th:text="${error}"></p>
+
+<form method="post" action="/cheese/edit" class="form" style="max-width: 600px" th:object="${cheese}">
     <div class="form-group">
         <label th:for="name" class="control-label">Name</label>
         <input class="form-control" th:field="*{name}"/>
@@ -31,7 +33,8 @@
         <input class="form-control" th:field="*{rating}"/>
         <span th:errors="*{rating}" class="error"></span>
     </div>
-    <input type="submit" value="Add Cheese" />
+    <input type="hidden" name="cheeseId" th:value="${cheese.cheeseId}" />
+    <input type="submit" value="Update Cheese" />
 </form>
 
 </body>
