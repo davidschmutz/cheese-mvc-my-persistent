@@ -3,18 +3,26 @@
 <head th:replace="fragments :: head"></head>
 <body class="container">
 
-<h1 th:text = "${'Welcome, ' + user.username}"></h1>
+<nav th:replace="fragments :: navigation"></nav>
+
+<h1 th:text = "${'Welcome ' + user.username}"></h1>
+
 <p>
-    <a href="/cheese">Show my cheeses</a>
-</p>
-<p>
-    <a href="/user/add">New user</a>
+    <a href="/user/add" class="pull-right">Add a New user</a>
 </p>
 
+<h3>Current Users</h3>
 
-<h3>Users</h3>
 <div th:each="user: ${users}">
-    <a th:href="${'/user/' + user.userID}" th:text="${user.username}"></a>
+    <ul>
+        <li>
+            <a th:href="${'/user/' + user.userID}" th:text="${user.username}"></a> --
+            <a th:href="@{'/user/edit/' + ${user.userID}}">Edit this Account</a>
+        </li>
+    </ul>
 </div>
+
+<div th:replace="fragments :: user-footer"></div>
+
 </body>
 </html>

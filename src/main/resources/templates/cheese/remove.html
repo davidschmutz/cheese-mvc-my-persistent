@@ -11,14 +11,16 @@
     <div class="form-box">
         <div class="checkbox" th:each="cheese: ${cheeses}">
             <label>
-                <input type="checkbox" name="cheeseIds" th:value="${cheese.cheeseId}" />
-                <span th:text="${cheese.name + ' (' + cheese.description + ')'}" />
+                <input type="checkbox" name="cheeseIds" th:value="${cheese.id}" />
+                <span th:text="${cheese.name + ' &nbsp; -- &nbsp; ' + cheese.description}" />
             </label>
         </div>
     </div>
 
-    <input type="submit" value="Remove checked items" />
+    <input type="submit" value="Remove checked items" class="btn btn-primary" />
 </form>
+
+<div th:replace="fragments :: cheese-footer"></div>
 
 </body>
 </html>

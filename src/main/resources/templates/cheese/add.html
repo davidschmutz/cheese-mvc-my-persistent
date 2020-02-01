@@ -3,36 +3,43 @@
 <head th:replace="fragments :: head"></head>
 <body class="container">
 
-<h1 th:text="${title}">Default Title</h1>
-
 <nav th:replace="fragments :: navigation"></nav>
 
-<form method="post" class="form" style="max-width: 600px" th:object="${cheese}">
+<h1 th:text="${title}">Default Title</h1>
+
+<form method="post" th:object="${cheese}" class="form" style="max-width: 600px" >
     <div class="form-group">
-        <label th:for="name" class="control-label">Name</label>
-        <input class="form-control" th:field="*{name}"/>
+        <label th:for="name" >Name</label>
+        <input class="form-control" th:field="*{name}"
+               placeholder="Please enter the name of the cheese ... 3 to 20 characters allowed" />
         <span th:errors="*{name}" class="error"></span>
     </div>
+
     <div class="form-group">
         <label th:for="description">Description</label>
-        <input class="form-control" th:field="*{description}"/>
+        <input class="form-control" th:field="*{description}" placeholder="Please enter a brief description" />
         <span th:errors="*{description}" class="error"></span>
     </div>
+
     <div class="form-group">
-        <label th:for="type">Type</label>
-        <select class="form-control" th:field="*{type}">
-            <option th:each="cheeseType: ${cheeseTypes}"
-                    th:text="${cheeseType.name}"
-                    th:value="${cheeseType}" />
+        <label th:for="category">Category</label>
+        <select name ="categoryId" class="form-control" style="max-width: 100px" >
+            <option th:each="category: ${categories}"
+                    th:text="${category.name}"
+                    th:value="${category.id}" ></option>
         </select>
     </div>
+
     <div class="form-group">
-        <label th:for="rating">Rating (1-5)</label>
-        <input class="form-control" th:field="*{rating}"/>
+        <label th:for="rating">Rating (1-5 ... with 5 being the best)</label>
+        <input class="form-control" th:field="*{rating}" style="max-width: 50px; text-align: center" />
         <span th:errors="*{rating}" class="error"></span>
     </div>
-    <input type="submit" value="Add Cheese" />
+
+    <input type="submit" value="Add Cheese" class="btn btn-primary" />
 </form>
+
+<div th:replace="fragments :: cheese-footer"></div>
 
 </body>
 </html>

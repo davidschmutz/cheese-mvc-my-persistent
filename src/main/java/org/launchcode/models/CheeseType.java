@@ -2,6 +2,7 @@ package org.launchcode.models;
 
 public enum CheeseType {
 
+    DEFAULT ("..."),
     HARD ("Hard"),
     SOFT ("Soft"),
     FAKE ("Fake");
