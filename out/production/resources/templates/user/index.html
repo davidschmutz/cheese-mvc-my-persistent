@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://wwww/thymeleaf.org">
+<head th:replace="fragments :: head"></head>
+<body class="container">
+
+<nav th:replace="fragments :: navigation"></nav>
+
+<h1 th:text = "${'Welcome ' + user.username}"></h1>
+
+<p>
+    <a href="/user/add" class="pull-right">Add a New user</a>
+</p>
+
+<h3>Current Users</h3>
+
+<div th:each="user: ${users}">
+    <ul>
+        <li>
+            <a th:href="${'/user/' + user.userID}" th:text="${user.username}"></a> --
+            <a th:href="@{'/user/edit/' + ${user.userID}}">Edit this Account</a>
+        </li>
+    </ul>
+</div>
+
+<div th:replace="fragments :: user-footer"></div>
+
+</body>
+</html>

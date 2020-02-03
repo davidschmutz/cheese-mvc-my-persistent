@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://wwww/thymeleaf.org">
+<head th:replace="fragments :: head"></head>
+<body class="container">
+
+<nav th:replace="fragments :: navigation"></nav>
+
+<h4 th:text = "${'User: ' + user.username}"></h4>
+<h4 th:text = "${'UserID: ' + user.userID}"></h4>
+<h4 th:text = "${'Email: ' + user.email}"></h4>
+<h4 th:text = "${'Core Competency: ' + user.type.name}"></h4>
+<h4 th:text = "${'Account created: ' + user.formattedDate}"></h4>
+
+<p>
+    <a href="/user/">All users</a>
+</p>
+
+<div th:replace="fragments :: user-footer"></div>
+
+</body>
+</html>

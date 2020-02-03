@@ -102,6 +102,7 @@ public class CheeseController {
         cheeseToEdit.setName(cheese.getName());
         cheeseToEdit.setDescription(cheese.getDescription());
 //        cheeseToEdit.setType(cheese.getType());
+        cheeseToEdit.setCategory(cheese.getCategory());
         cheeseToEdit.setRating(cheese.getRating());
         cheeseDao.save(cheeseToEdit);
         return "redirect:";
