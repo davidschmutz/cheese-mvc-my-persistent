@@ -78,18 +78,17 @@ public class UserController {
         return "redirect:";
     }
 
-    @RequestMapping(value="edit/{userId}", method=RequestMethod.GET)
-    public String displayEditForm(Model model, @PathVariable int userId){
+    @RequestMapping(value="edit/{userId}", method = RequestMethod.GET)
+    public String displayEditUserForm(Model model, @PathVariable int userId){
         User userToEdit = userDao.findOne(userId);
         model.addAttribute("user", userToEdit);
         model.addAttribute("userTypes", UserType.values());
         return "user/edit";
     }
 
-    @RequestMapping(value="edit",method=RequestMethod.POST)
-    public String processEditForm(@ModelAttribute @Valid User user,
-                                  int userId,
-                                  Errors errors, Model model){
+    @RequestMapping(value="edit", method = RequestMethod.POST)
+    public String processEditUserForm(@ModelAttribute @Valid User user,
+                                  Errors errors, Model model, int userId){
         if(errors.hasErrors()){
             model.addAttribute("userTypes", UserType.values());
             return "user/edit";

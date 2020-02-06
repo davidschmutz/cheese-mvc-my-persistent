@@ -5,7 +5,13 @@
 
 <nav th:replace="fragments :: navigation"></nav>
 
-<h1 th:text="${'Edit User: &nbsp;' + user.username + ' -- ' + 'User Id ' + user.id}"></h1>
+<h1 th:text="${'Edit User: &nbsp;' + user.username + ' &nbsp; -- ' + 'User Id# ' + user.id}"></h1>
+
+<nav>
+    <a href="/user/" >List All users</a>
+    <span> | </span>
+</nav>
+<br />
 
 <form method="post" action="/user/edit" th:object="${user}" class="form" style="max-width: 600px" >
     <div class="form-group">
@@ -46,11 +52,6 @@
     <input type="hidden" name="userId" th:value="*{id}" />
     <input type="submit" value="Update User" class="btn btn-primary" />
 </form>
-
-<br />
-<p>
-    <a href="/user/">List All users</a>
-</p>
 
 <div th:replace="fragments :: footer"></div>
 

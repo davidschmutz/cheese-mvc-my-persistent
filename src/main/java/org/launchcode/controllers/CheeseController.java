@@ -30,7 +30,7 @@ public class CheeseController {
     @RequestMapping(value = "")
     public String index(Model model) {
         model.addAttribute("cheeses", cheeseDao.findAll());
-        model.addAttribute("title", "My Cheeses");
+        model.addAttribute("title", "My Cheese");
         return "cheese/index";
     }
 
@@ -73,7 +73,6 @@ public class CheeseController {
         return "redirect:";
     }
 
-    //
     @RequestMapping(value = "category", method = RequestMethod.GET)
     public String category(Model model, @RequestParam int id) {
         Category cat = categoryDao.findOne(id);

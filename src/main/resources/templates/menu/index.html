@@ -3,9 +3,17 @@
 <head th:replace="fragments :: head"></head>
 <body class="container">
 
+    <nav th:replace="fragments :: navigation"></nav>
+
     <h1 th:text="${title}">Default Title</h1>
 
-    <nav th:replace="fragments :: navigation"></nav>
+    <nav>
+        <a href="/menu/add" title="Add a new menu">Add Menu</a>
+        <span> | </span>
+        <span title="Remove a menu from this list">TODO: Remove Menu</span>
+
+    </nav>
+    <br />
 
     <p th:unless="${menus.size()}">No menus have been created ... yet.</p>
 
@@ -15,7 +23,7 @@
         </li>
     </ul>
 
-    <p><a href="/menu/add">Add Menu</a></p>
+
 
     <div th:replace="fragments :: footer"></div>
 

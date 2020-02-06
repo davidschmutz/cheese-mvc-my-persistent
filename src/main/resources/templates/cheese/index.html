@@ -7,6 +7,13 @@
 
 <h1 th:text="${title}">Title</h1>
 
+<nav>
+    <a th:href="@{/cheese/add}" title="Add a new cheese to the list">Add</a>
+    <span> | </span>
+    <a th:href="@{/cheese/remove}" title="Remove a cheese from the list">Remove</a>
+</nav>
+<br />
+
 <p th:unless="${cheeses} and ${cheeses.size()}">Somebody moved my Cheese! &nbsp; :( </p>
 
 <div th:unless="${cheeses.isEmpty()}">
@@ -35,7 +42,7 @@
 <span class="glyphicon glyphicon-star"></span>
 <span class="glyphicon glyphicon-star"></span>
 <span class="glyphicon glyphicon-star"></span>
-
+<span style='content:"\e006"'></span>
 
 <div th:replace="fragments :: admin-footer"></div>
 

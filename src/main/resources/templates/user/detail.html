@@ -5,26 +5,20 @@
 
 <nav th:replace="fragments :: navigation"></nav>
 
-<h1>User Account Details</h1>
+<h1>User Account Detail</h1>
 
-<!--<h4 th:text = "${'User: &nbsp;' + user.username}"></h4>-->
-<!--<h4 th:text = "${'User Id: &nbsp;' + user.id}"></h4>-->
-<!--<h4 th:text = "${'Email: &nbsp;' + user.email}"></h4>-->
-<!--<h4 th:text = "${'Core Competency: &nbsp;' + user.type.name}"></h4>-->
-<!--<h4 th:text = "${'Account created: &nbsp;' + user.formattedDate}"></h4>-->
+<nav>
+    <a th:href="@{'/user/edit/' + ${user.id}}">Edit this Account</a>
+    <span> | </span>
+    <a href="/user/">List All users</a>
+</nav>
+<br />
 
 <h4 th:text = "${'User: &nbsp;' + user.username}"></h4>
 <h4 th:text = "${'User Id: &nbsp;' + user.id}"></h4>
 <h4 th:text = "${'Email: &nbsp;' + user.email}"></h4>
 <h4 th:text = "${'Core Competency: &nbsp;' + user.type.name}"></h4>
 <h4 th:text = "${'Account created: &nbsp;' + user.formattedDate}"></h4>
-
-<br />
-<p>
-    <a th:href="@{'/user/edit/' + ${user.id}}">Edit this Account</a>
-    <span> | </span>
-    <a href="/user/">List All users</a>
-</p>
 
 <div th:replace="fragments :: footer"></div>
 
