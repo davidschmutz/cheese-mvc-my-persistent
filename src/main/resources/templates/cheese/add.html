@@ -11,7 +11,8 @@
     <div class="form-group">
         <label th:for="name" >Name</label>
         <input class="form-control" th:field="*{name}"
-               placeholder="Please enter the name of the cheese ... 3 to 20 characters allowed" />
+               placeholder="Please enter the name of the cheese ... 3 to 20 characters allowed"
+               id="focus"/>
         <span th:errors="*{name}" class="error"></span>
     </div>
 
@@ -39,7 +40,13 @@
     <input type="submit" value="Add Cheese" class="btn btn-primary" />
 </form>
 
-<div th:replace="fragments :: cheese-footer"></div>
+<div th:replace="fragments :: footer"></div>
+
+<script language="javascript" type="text/javascript">
+    window.onload = function() {
+        document.getElementById("focus").focus();
+    };
+</script>
 
 </body>
 </html>

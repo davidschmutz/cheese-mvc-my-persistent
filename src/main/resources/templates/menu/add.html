@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="fragments :: head"></head>
+    <body class="container">
+        <h1 th:text="${title}">Default Title</h1>
+
+        <nav th:replace="fragments :: navigation"></nav>
+
+        <form method="post" th:object="${menu}">
+            <div class="form-group">
+                <label th:for="name" >Name</label>
+                <input class="form-control" th:field="*{name}" id="focus"/>
+                <span class="error" th:errors="*{name}" ></span>
+            </div>
+
+            <input type="submit" value="Add Menu" />
+        </form>
+
+        <script language="javascript" type="text/javascript">
+            window.onload = function() {
+                document.getElementById("focus").focus();
+            };
+        </script>
+
+        <div th:replace="fragments :: footer"></div>
+
+    </body>
+</html>

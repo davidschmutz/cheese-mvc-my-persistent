@@ -24,12 +24,20 @@
         <td th:text="${cheese.category.name}"></td>
         <td th:text="${cheese.rating}"></td>
         <!--<td><a th:href="${'/cheese/edit/' + cheese.id}">Edit</a></td>-->
-        <td><a th:href="@{'/cheese/edit/' + ${cheese.id}}">Edit</a></td>
+        <td><a th:href="@{'/cheese/edit/' + ${cheese.id}}" title="Edit this cheese">Edit</a></td>
     </tr>
 </table>
 </div>
 
-<div th:replace="fragments :: cheese-footer"></div>
+
+<span class="glyphicon glyphicon-star"></span>
+<span class="glyphicon glyphicon-star"></span>
+<span class="glyphicon glyphicon-star"></span>
+<span class="glyphicon glyphicon-star"></span>
+<span class="glyphicon glyphicon-star"></span>
+
+
+<div th:replace="fragments :: admin-footer"></div>
 
 </body>
 </html>

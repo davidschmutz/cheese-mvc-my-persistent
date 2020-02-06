@@ -24,19 +24,20 @@ public class UserController {
 
     private User loggedInUser;
 
+    // Request path: /user
     @RequestMapping(value = "")
     public String index(Model model){
-        if(loggedInUser == null){
-            return "redirect:/user/add";
-        }
-        model.addAttribute("user", loggedInUser);
+//        if(loggedInUser == null){
+//            return "redirect:/user/add";
+//        }
+//        model.addAttribute("user", loggedInUser);
         model.addAttribute("users", userDao.findAll());
         return "user/index";
     }
 
-    @RequestMapping("{userID}")
-    public String index(Model model, @PathVariable int userID){
-        model.addAttribute("user", userDao.findOne(userID));
+    @RequestMapping("{userId}")
+    public String index(Model model, @PathVariable int userId){
+        model.addAttribute("user", userDao.findOne(userId));
         return "user/detail";
     }
 
@@ -54,11 +55,12 @@ public class UserController {
         if(errors.hasErrors()){
             model.addAttribute("title", "Add User");
             model.addAttribute("userTypes", UserType.values());
+//            model.addAttribute("categories", userDao.findAll());
             return "user/add";
         }
         userDao.save(newUser);
         loggedInUser = newUser;
-        return "redirect:/user";
+        return "redirect:";
     }
 
     @RequestMapping(value = "remove", method = RequestMethod.GET)
@@ -86,18 +88,23 @@ public class UserController {
 
     @RequestMapping(value="edit",method=RequestMethod.POST)
     public String processEditForm(@ModelAttribute @Valid User user,
+                                  int userId,
                                   Errors errors, Model model){
         if(errors.hasErrors()){
             model.addAttribute("userTypes", UserType.values());
             return "user/edit";
         }
-        User userToEdit = userDao.findOne(user.getId());
+        User userToEdit = userDao.findOne(userId);
+//        User userToEdit = userDao.findOne(user.getId());
         userToEdit.setUsername(user.getUsername());
         userToEdit.setEmail(user.getEmail());
         userToEdit.setType(user.getType());
         userToEdit.setPassword(user.getPassword());
         userToEdit.setVerifyPassword(user.getVerifyPassword());
-        return "redirect:";
+        userDao.save(userToEdit);
+        model.addAttribute("user", userDao.findOne(userId));
+//        return "redirect:";
+        return "user/detail";
     }
 
 }

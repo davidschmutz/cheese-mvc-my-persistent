@@ -9,10 +9,10 @@
 
 <form method="post" class="form" style="max-width: 450px;">
     <div class="form-box">
-        <div class="checkbox" th:each="cheese: ${cheeses}">
+        <div class="checkbox" th:each="user: ${users}">
             <label>
-                <input type="checkbox" name="cheeseIds" th:value="${cheese.id}" />
-                <span th:text="${cheese.name + ' &nbsp; -- &nbsp; ' + cheese.description}" />
+                <input type="checkbox" name="userIds" th:value="${user.id}" />
+                <span th:text="${user.name + ' &nbsp; -- &nbsp; ' + user.description}" />
             </label>
         </div>
     </div>

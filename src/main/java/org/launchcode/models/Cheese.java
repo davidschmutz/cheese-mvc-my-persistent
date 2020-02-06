@@ -1,13 +1,11 @@
 package org.launchcode.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 @Entity
 public class Cheese {
@@ -26,6 +24,9 @@ public class Cheese {
 
     @ManyToOne
     private Category category;
+
+    @ManyToMany(mappedBy = "cheeses")
+    private List<Menu> menus;
 
     @Min(value=1, message="Rating must be from 1 to 5.")
     @Max(value=5, message="Rating must be from 1 to 5.")
