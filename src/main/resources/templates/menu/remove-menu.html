@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: head"></head>
+<body class="container">
+
+<h1 th:text="${title}">Default Title</h1>
+
+<nav th:replace="fragments :: navigation"></nav>
+
+<form method="post" class="form" style="max-width: 450px;">
+    <div class="form-box">
+        <div class="checkbox" th:each="menu: ${menus}">
+            <label>
+                <input type="checkbox" name="menuIds" th:value="${menu.id}" />
+                <span th:text="${menu.name}" />
+            </label>
+        </div>
+    </div>
+
+    <input type="submit" value="Remove checked items" class="btn btn-primary" />
+</form>
+
+<div th:replace="fragments :: footer"></div>
+
+</body>
+</html>

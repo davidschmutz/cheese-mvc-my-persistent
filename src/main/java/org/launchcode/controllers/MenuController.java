@@ -9,10 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -50,11 +47,25 @@ public class MenuController {
         return "redirect:view/" + menu.getId();
     }
 
+    @RequestMapping(value = "remove", method = RequestMethod.GET)
+    public String displayRemoveMenuForm(Model model) {
+        model.addAttribute("menus", menuDao.findAll());
+        model.addAttribute("title", "Remove Menu");
+        return "menu/remove-menu";
+    }
+
+    @RequestMapping(value = "remove", method = RequestMethod.POST)
+    public String processRemoveMenuForm(@RequestParam int [] menuIds) {
+        for (int menuId : menuIds) {
+            menuDao.delete(menuId);
+        }
+        return "redirect:";
+    }
+
     @RequestMapping(value = "view/{menuId}", method = RequestMethod.GET)
     public String viewMenu(Model model, @PathVariable int menuId){
         Menu menu = menuDao.findOne(menuId);
         model.addAttribute("title", menu.getName());
-//        model.addAttribute("menuId", menu.getId());
         model.addAttribute("cheeses", menu.getCheeses());
         model.addAttribute(menu);
         return "menu/view";
@@ -62,9 +73,6 @@ public class MenuController {
 
     @RequestMapping(value = "add-item/{menuId}", method = RequestMethod.GET)
     public String addItem(Model model, @PathVariable int menuId){
-
-//        Menu menu = menuDao.findOne(menuId);
-
         AddMenuItemForm form = new AddMenuItemForm(menuDao.findOne(menuId), cheeseDao.findAll());
         model.addAttribute("title", "Add item to menu: " + form.getMenu().getName().toUpperCase());
         model.addAttribute("form", form);
@@ -72,10 +80,8 @@ public class MenuController {
     }
 
     @RequestMapping(value = "add-item", method = RequestMethod.POST)
-//    public String addItem(Model model, @ModelAttribute @Valid AddMenuItemForm form, Errors errors){
     public String addItem(@ModelAttribute @Valid AddMenuItemForm form, Errors errors){
         if(errors.hasErrors()){
-//            model.addAttribute("form", form);
             return "menu/add-item";
         }
         Menu theMenu = menuDao.findOne(form.getMenuId());
