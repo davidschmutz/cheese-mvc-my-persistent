@@ -3,20 +3,20 @@
 <head th:replace="fragments :: head"></head>
 <body class="container">
 
-<h1 th:text="${title}">Default Title</h1>
+<h1 th:text="${title} + ' ' + ${menu.name}">Default Title</h1>
 
 <nav th:replace="fragments :: navigation"></nav>
 
-<form method="post" class="form" style="max-width: 450px;">
+<form method="post" action="/menu/remove-item/" class="form" style="max-width: 600px;" th:object="${menu}">
     <div class="form-box">
-        <div class="checkbox" th:each="menu: ${menus}">
+        <div class="checkbox" th:each="cheese: *{cheeses}">
             <label>
-                <input type="checkbox" name="menuIds" th:value="${menu.id}" />
-                <span th:text="${menu.name}" />
+                <input type="checkbox" name="cheeseIds" th:value="${cheese.id}" />
+                <span th:text="${cheese.name}" />
             </label>
         </div>
     </div>
-
+    <input type="hidden" name="menuId" th:value="*{id}" />
     <input type="submit" value="Remove checked items" class="btn btn-primary" />
 </form>
 

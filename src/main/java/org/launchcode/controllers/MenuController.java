@@ -32,7 +32,7 @@ public class MenuController {
 
     @RequestMapping(value = "add", method = RequestMethod.GET)
     public String add(Model model){
-        model.addAttribute("title", "Add Menu");
+        model.addAttribute("title", "Add a New Menu");
         model.addAttribute(new Menu());
         return "menu/add";
     }
@@ -91,4 +91,23 @@ public class MenuController {
         return "redirect:/menu/view/" + theMenu.getId();
     }
 
+    @RequestMapping(value = "remove-item/{menuId}", method = RequestMethod.GET)
+    public String displayRemoveItemForm(Model model, @PathVariable int menuId) {
+        model.addAttribute("title", "Remove Item(s) From: ");
+        model.addAttribute("menu", menuDao.findOne(menuId));
+        return "menu/remove-item";
+    }
+
+    @RequestMapping(value = "remove-item", method = RequestMethod.POST)
+    public String processRemoveItemForm(Model model, @RequestParam int [] cheeseIds, int menuId) {
+        Menu menu = menuDao.findOne(menuId);
+        for (int cheeseId : cheeseIds) {
+            Cheese cheeseToRemove = cheeseDao.findOne(cheeseId);
+            menu.removeItem(cheeseToRemove);
+            menuDao.save(menu);
+        }
+        model.addAttribute("title", menu.getName());
+        model.addAttribute("cheeses", menu.getCheeses());
+        return  "redirect:/menu/view/" + menuId;
+    }
 }
