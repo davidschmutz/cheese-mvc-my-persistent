@@ -12,6 +12,8 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @RequestMapping("menu")
@@ -73,7 +75,17 @@ public class MenuController {
 
     @RequestMapping(value = "add-item/{menuId}", method = RequestMethod.GET)
     public String addItem(Model model, @PathVariable int menuId){
-        AddMenuItemForm form = new AddMenuItemForm(menuDao.findOne(menuId), cheeseDao.findAll());
+        // Added this code to prevent duplicate cheeses on a single menu
+        List<Cheese> availableCheese = new ArrayList<>();
+        List<Cheese> cheeseOnMenu = menuDao.findOne(menuId).getCheeses();
+        for (Cheese cheese : cheeseDao.findAll()){
+            if (!cheeseOnMenu.contains(cheese)){
+                availableCheese.add(cheese);
+            }
+        }
+
+        AddMenuItemForm form = new AddMenuItemForm(menuDao.findOne(menuId), availableCheese);
+//        AddMenuItemForm form = new AddMenuItemForm(menuDao.findOne(menuId), cheeseDao.findAll());
         model.addAttribute("title", "Add item to menu: " + form.getMenu().getName().toUpperCase());
         model.addAttribute("form", form);
         return "menu/add-item";

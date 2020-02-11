@@ -9,14 +9,17 @@
 
     <nav>
         <a th:href="'/menu/add-item/' + ${menu.id}"
-           title="Add a cheese to this menu">Add Cheese</a>
-        <span> | </span>
-            <a th:if="${cheeses.size()}" th:href="'/menu/remove-item/' + ${menu.id}"
-               title="Remove cheese from this menu">Remove Cheese</a>
+           title="Add a cheese to this menu">Add Cheese
+        </a>
+        <span>|</span>
+        <a th:if="${cheeses.size()}" th:href="'/menu/remove-item/' + ${menu.id}"
+           title="Remove cheese from this menu">Remove Cheese
+        </a>
     </nav>
-    <br />
+    <br/>
 
-    <p th:unless="${cheeses.size()}">No cheese has been added to this menu ... yet.</p>
+    <p th:unless="${cheeses.size()}">Hey!<br />Somebody moved my Cheese! ...
+        or cheese has not been added.</p>
 
     <ul>
         <li th:each="cheese: ${cheeses}"
