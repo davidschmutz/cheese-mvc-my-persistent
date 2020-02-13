@@ -33,3 +33,21 @@ td{
 .admin-button {
     color: white;
 }
+.rating.glyphicon{
+    color: SkyBlue;
+}
+.rating-1:before{
+    content: "\e006";
+}
+.rating-2:before{
+    content: "\e006 \e006";
+}
+.rating-3:before{
+    content: "\e006\e006\e006";
+}
+.rating-4:before{
+    content: "\e006\e006\e006\e006";
+}
+.rating-5:before{
+    content: "\e006\e006\e006\e006\e006";
+}

@@ -5,7 +5,10 @@
         <h1 th:text="${title}">Default Title</h1>
         <nav th:replace="fragments :: navigation"></nav>
 
-        <form method="post" action="/menu/add-item" th:object="${form}" class="form" style="max-width: 600px">
+        <p th:unless="${form.cheeses} and ${form.cheeses.size()}">All available cheese is already on the this menu.</p>
+
+        <form th:if="${form.cheeses.size()}" method="post" action="/menu/add-item"
+              th:object="${form}" class="form" style="max-width: 400px">
             <div class="form-group">
                 <label th:for="cheeseId">Cheese</label>
                 <select name="cheeseId" class="form-control">
@@ -15,11 +18,9 @@
                     </option>
                 </select>
             </div>
-
             <span th:errors="*{cheeseId}" class="error"></span>
 
             <input type="hidden" name="menuId" th:value="*{menu.id}" />
-
             <input type="submit" value="Add Item" />
         </form>
 

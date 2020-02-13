@@ -27,27 +27,28 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a th:href="@{/cheese}" class="navbar-brand">MyCheese</a>
+                <a th:href="@{/cheese}" class="navbar-brand" title="Home">My Cheese</a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a th:href="@{/cheese}">List</a></li>
-                    <li><a href="/category">Categories</a></li>
-                    <li><a th:href="@{/cheese/add}">Add</a></li>
-                    <li><a th:href="@{/cheese/remove}">Remove</a></li>
+                    <li><a th:href="@{/category}" title="List all cheese categories">Categories</a></li>
+                    <li><a th:href="@{/menu/}" title="List cheese sampler menus">Menus</a></li>
                 </ul>
             </div>
         </div>
     </div>
 
-    <div th:fragment="cheese-footer">
+    <div th:fragment="admin-footer">
         <div class="container">
             <div class="text-muted pull-right">&copy; David Schmutz &nbsp;2020</div><br />
-            <div class="text-muted pull-right"><a class="admin-button" th:href="@{/user}">User Controller Access</a></div>
+            <div class="text-muted pull-right">
+                <a class="admin-button"
+                   th:href="@{/user}"
+                   style="text-decoration: none;">Quick Access -- User Controller</a></div>
         </div>
     </div>
 
-    <div th:fragment="user-footer">
+    <div th:fragment="footer">
         <div class="container">
             <div class="text-muted pull-right">&copy; David Schmutz &nbsp;2020</div><br />
         </div>

@@ -3,16 +3,22 @@
 <head th:replace="fragments :: head"></head>
 <body class="container">
 
+<nav th:replace="fragments :: navigation"></nav>
+
 <h1 th:text="${title}">Default Title</h1>
 
-<nav th:replace="fragments :: navigation"></nav>
+<nav>
+    <a href="/user/">Return to User List</a>
+    <span> | </span>
+</nav>
+<br />
 
 <form method="post" class="form" style="max-width: 600px;">
     <div class="form-box">
-        <div class="checkbox" th:each="user: ${users}">
+        <div class="checkbox" th:each="user : ${users}">
             <label>
                 <input type="checkbox" name="userIds" th:value="${user.id}" />
-                <span th:text="${user.name + ' &nbsp; -- &nbsp; ' + user.description}" />
+                <span th:text="${user.username}" />
             </label>
         </div>
     </div>

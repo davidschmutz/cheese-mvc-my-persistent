@@ -5,24 +5,26 @@
 
 <nav th:replace="fragments :: navigation"></nav>
 
-<h1 th:text = "${'Welcome ' + user.username}"></h1>
+<!--<h1 th:text = "${'Welcome ' + user.username + ' !'}" style="text-align: center;"></h1>-->
+<h1>Current Users</h1>
 
-<p>
-    <a href="/user/add" class="pull-right">Add a New user</a>
-</p>
-
-<h3>Current Users</h3>
+<nav>
+    <a href="/user/add" >Add a New user</a>
+    <span> | </span>
+</nav>
+<br />
 
 <div th:each="user: ${users}">
     <ul>
         <li>
-            <a th:href="${'/user/' + user.userID}" th:text="${user.username}"></a> --
-            <a th:href="@{'/user/edit/' + ${user.userID}}">Edit this Account</a>
+            <a th:href="${'/user/' + user.id}" th:text="${user.username}"></a>
+            <!--<span>&#45;&#45;</span>-->
+            <!--<a th:href="@{'/user/edit/' + ${user.id}}" title="Edit this Account">edit</a>-->
         </li>
     </ul>
 </div>
 
-<div th:replace="fragments :: user-footer"></div>
+<div th:replace="fragments :: footer"></div>
 
 </body>
 </html>

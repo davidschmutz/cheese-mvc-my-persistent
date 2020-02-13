@@ -7,7 +7,7 @@
 
 <nav th:replace="fragments :: navigation"></nav>
 
-<form method="post" class="form" style="max-width: 450px;">
+<form method="post" class="form" style="max-width: 600px;">
     <div class="form-box">
         <div class="checkbox" th:each="cheese: ${cheeses}">
             <label>
@@ -20,7 +20,7 @@
     <input type="submit" value="Remove checked items" class="btn btn-primary" />
 </form>
 
-<div th:replace="fragments :: cheese-footer"></div>
+<div th:replace="fragments :: footer"></div>
 
 </body>
 </html>

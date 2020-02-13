@@ -7,12 +7,36 @@
 
 <h1 th:text="${title}">Title</h1>
 
-<ul>
-    <li th:each="category: ${categories}" th:text="${category.name}"></li>
-</ul>
-
 <nav>
-    <a href="/category/add">Add Category</a>
+    <a href="/category/add" title="Add a new cheese category">Add Category</a>
+    <span> | </span>
+    <a th:href="@{/images/category.jpg}" target="_blank" title="Define Category">Definition</a>
 </nav>
+<br />
+
+<!--<h5>Links for @PathVariable notation</h5>-->
+<ul>
+    <!--<li th:each="category: ${categories}" th:text="${category.name}"></li>-->
+    <li th:each="category: ${categories}" >
+        <a th:href="@{'/cheese/list/' + ${category.id}}"
+           th:text="${category.name}"
+           title="Display all cheese in this category ... using @PathVariable notation"></a>
+    </li>
+</ul>
+<br />
+
+<!--<h5>Links for @RequestParam notation</h5>-->
+<!--<ul>-->
+    <!--<li th:each="category: ${categories}" th:text="${category.name}"></li>-->
+    <!--<li th:each="category: ${categories}" >-->
+        <!--<a th:href="@{'/cheese/list/' + ${category.id}}"-->
+        <!--<a th:href="@{'/cheese/category?id=' + ${category.id}}"-->
+           <!--th:text="${category.name}"-->
+           <!--title="Display all cheese in this category ... using @RequestParam notation"></a>-->
+    <!--</li>-->
+<!--</ul>-->
+
+<div th:replace="fragments :: footer"></div>
+
 </body>
 </html>
