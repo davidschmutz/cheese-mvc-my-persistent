@@ -5,7 +5,12 @@
         <h1 th:text="${title}">Default Title</h1>
         <nav th:replace="fragments :: navigation"></nav>
 
-        <p th:unless="${form.cheeses} and ${form.cheeses.size()}">All available cheese is already on the this menu.</p>
+        <div th:unless="${form.cheeses} and ${form.cheeses.size()}">
+            <br />
+            <h4 >All available cheese is already on the this menu.<br/>
+            Sorry ... no more cheese to add.</h4>
+            <img src="../../../images/critter.png" />
+        </div>
 
         <form th:if="${form.cheeses.size()}" method="post" action="/menu/add-item"
               th:object="${form}" class="form" style="max-width: 400px">

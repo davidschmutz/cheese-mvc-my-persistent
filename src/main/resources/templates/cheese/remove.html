@@ -7,15 +7,23 @@
 
 <nav th:replace="fragments :: navigation"></nav>
 
-<form method="post" class="form" style="max-width: 600px;">
-    <div class="form-box">
-        <div class="checkbox" th:each="cheese: ${cheeses}">
-            <label>
-                <input type="checkbox" name="cheeseIds" th:value="${cheese.id}" />
-                <span th:text="${cheese.name + ' &nbsp; -- &nbsp; ' + cheese.description}" />
-            </label>
-        </div>
-    </div>
+<form method="post" >
+    <table class="table">
+        <tr>
+            <th></th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Category</th>
+            <th>Rating</th>
+        </tr>
+        <tr th:each="cheese: ${cheeses}">
+            <td><input type="checkbox" name="cheeseIds" th:value="${cheese.id}" /></td>
+            <td th:text="${cheese.name}"></td>
+            <td th:text="${cheese.description}"></td>
+            <td th:text="${cheese.category.name}"></td>
+            <td><span th:class="'glyphicon rating rating-' + ${cheese.rating}"></span></td>
+        </tr>
+    </table>
 
     <input type="submit" value="Remove checked items" class="btn btn-primary" />
 </form>

@@ -55,7 +55,6 @@ public class UserController {
         if(errors.hasErrors()){
             model.addAttribute("title", "Add User");
             model.addAttribute("userTypes", UserType.values());
-//            model.addAttribute("categories", userDao.findAll());
             return "user/add";
         }
         userDao.save(newUser);
@@ -71,9 +70,11 @@ public class UserController {
     }
 
     @RequestMapping(value = "remove", method = RequestMethod.POST)
-    public String processRemoveUserForm(@RequestParam int [] userIds) {
-        for (int userId : userIds) {
-            userDao.delete(userId);
+    public String processRemoveUserForm(@RequestParam(required = false) int [] userIds) {
+        if (userIds != null){
+            for (int userId : userIds) {
+                userDao.delete(userId);
+            }
         }
         return "redirect:";
     }
@@ -94,7 +95,6 @@ public class UserController {
             return "user/edit";
         }
         User userToEdit = userDao.findOne(userId);
-//        User userToEdit = userDao.findOne(user.getId());
         userToEdit.setUsername(user.getUsername());
         userToEdit.setEmail(user.getEmail());
         userToEdit.setType(user.getType());
@@ -102,7 +102,6 @@ public class UserController {
         userToEdit.setVerifyPassword(user.getVerifyPassword());
         userDao.save(userToEdit);
         model.addAttribute("user", userDao.findOne(userId));
-//        return "redirect:";
         return "user/detail";
     }
 
