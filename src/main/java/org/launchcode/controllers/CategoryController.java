@@ -29,7 +29,10 @@ public class CategoryController {
     @RequestMapping(value="add", method= RequestMethod.GET)
     public String add(Model model){
         model.addAttribute("title", "Add Category");
-        model.addAttribute(new Category());  // shorthand for ("category", new Category())
+        model.addAttribute(new Category()); // Shorthand to create a new category object
+                                            // using the default constructor,
+                                            // pass it into the view with key "category"
+                                            // same as ... ("category", new Category())
         return "category/add";
     }
 

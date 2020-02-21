@@ -26,7 +26,7 @@
             <span th:errors="*{cheeseId}" class="error"></span>
 
             <input type="hidden" name="menuId" th:value="*{menu.id}" />
-            <input type="submit" value="Add Item" />
+            <input type="submit" value="Add Item" class="btn btn-primary" />
         </form>
 
         <div th:replace="fragments :: footer"></div>
