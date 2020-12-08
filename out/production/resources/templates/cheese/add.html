@@ -16,7 +16,7 @@
         <input class="form-control"
                th:field="*{name}"
                placeholder="Please enter the name of the cheese ... 3 to 20 characters allowed"
-               id="focus"/>
+               id="focus" />
         <span th:errors="*{name}" class="error"></span>
     </div>
 
@@ -48,20 +48,31 @@
         <span th:errors="*{rating}"
               class="error"></span>
     </div>
-
-    <input type="submit"
-           value="Add Cheese"
-           class="btn btn-primary" />
+    <input type="submit" value="Add Cheese" class="btn btn-primary" />
 </form>
+
+
+<br /><br />
+<h4 style="color: red;">TODO: &nbsp; Pass this Star rating value to the handler</h4>
+<div id='jqxWidget' style="font-size: 13px; font-family: Verdana;">
+    <div style='float: left;'>Rating: &nbsp;</div> <div style='float: left;' id='rate'></div>
+    <div id='jqxRating' style="padding-top: 25px;"></div>
+</div>
+<script type="text/javascript">
+        $(document).ready(function () {
+            // Create jqxRating
+            $("#jqxRating").jqxRating({ width: 350, height: 35, theme: 'classic'});
+            $("#jqxRating").on('change', function (event) {
+                $("#rate").find('span').remove();
+                $("#rate").append('<span>' + event.value + '</span>');
+            });
+        });
+</script>
 
 <div th:replace="fragments :: footer"></div>
 
-<!--<script language="javascript"-->
-        <!--type="text/javascript">-->
-    <!--window.onload = function() {-->
-        <!--document.getElementById("focus").focus();-->
-    <!--};-->
-<!--</script>-->
+
+
 
 </body>
 </html>

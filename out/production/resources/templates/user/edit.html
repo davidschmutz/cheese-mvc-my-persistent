@@ -5,7 +5,12 @@
 
 <nav th:replace="fragments :: navigation"></nav>
 
-<h1 th:text="${'Edit User: &nbsp;' + user.username + ' &nbsp; -- ' + 'User Id# ' + user.id}"></h1>
+<!--<h1 th:text="${'Edit User: &nbsp;' + user.username + ' &nbsp; &#45;&#45; ' + 'User Id# ' + user.id}"></h1>-->
+<h1 >
+    <span th:text="${'Edit User: &nbsp;' + user.username}"></span>
+    <span th:text="'&nbsp; User Id: ' + ${user.id}" class="text-muted" style="font-size:50%;"></span>
+</h1>
+
 
 <nav>
     <a href="/user/" >List All users</a>

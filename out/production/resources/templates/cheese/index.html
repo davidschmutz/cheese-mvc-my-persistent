@@ -14,7 +14,8 @@
 </nav>
 <br />
 
-<p th:unless="${cheeses} and ${cheeses.size()}">Somebody moved my Cheese! &nbsp; :( </p>
+<p th:unless="${cheeses} and ${cheeses.size()}">Somebody moved my Cheese! <img src="../../../images/sad.png" /></p>
+
 
 <div th:unless="${cheeses.isEmpty()}">
 <table class="table" >
@@ -23,6 +24,7 @@
         <th>Description</th>
         <th>Category</th>
         <th>Rating</th>
+        <th></th>
     </tr>
 
     <tr th:each="cheese : ${cheeses}">
